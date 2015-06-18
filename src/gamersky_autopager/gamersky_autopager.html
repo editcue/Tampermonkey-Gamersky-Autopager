@@ -61,15 +61,6 @@
             var btnLoadNext = $('.btn-loadNext');
             var btnLoadAll = $('.btn-loadAll');
             var btnLoadStop = $('.btn-loadStop');
-
-
-            /*====================================pageLoader====================================*/
-            var isStop = false;
-
-            function stopLoadPage() {
-                isStop = true;
-            }
-
             function loading() {
                 btnLoadStop.show();
                 btnLoadNext.hide();
@@ -80,6 +71,13 @@
                 btnLoadStop.hide();
                 btnLoadAll.show();
                 btnLoadNext.show();
+            }
+
+            /*====================================pageLoader====================================*/
+            var isStop = false;
+
+            function stopLoadPage() {
+                isStop = true;
             }
 
             function getNextPageUrl() {
