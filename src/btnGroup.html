@@ -5,60 +5,144 @@
     <title></title>
 </head>
 <body>
-<div class="html">
-    <style>
-        .btn-group {
-            position: fixed;
-            right: 100px;
-            top: 100px;
-            font-size: 0;
-            background: rgba(200, 200, 200, 0.5);
-            opacity: 0.6;
-        }
+<style>
+    .btn-group {
+        position: fixed;
+        right: 100px;
+        top: 100px;
+        font-size: 0;
+        background: rgba(200, 200, 200, 0.5);
+        opacity: 0.6;
+    }
 
-        .btn-group a {
-            display: inline-block;
-            margin: 0;
-            padding: 15px 25px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #ddd;
-            text-decoration: none;
-            background: rgba(200, 200, 200, 0.5);
-        }
+    .btn-group a {
+        display: inline-block;
+        margin: 0;
+        padding: 15px 25px;
+        font-size: 12px;
+        font-weight: bold;
+        color: #ddd;
+        text-decoration: none;
+        background: rgba(200, 200, 200, 0.5);
+    }
 
-        .btn-group a:hover {
-            opacity: 0.8;
-        }
+    .btn-group a:hover {
+        opacity: 0.8;
+    }
 
-        .btn-group a:active {
-            opacity: 1;
-        }
+    .btn-group a:active {
+        opacity: 1;
+    }
 
-        .btn-group a.btn-loadNext {
-            background: rgba(4, 124, 210, 1);
-        }
+    .btn-group a.btn-loadNext {
+        background: rgba(4, 124, 210, 1);
+    }
 
-        .btn-group a.btn-loadAll {
-            background: rgba(0, 99, 169, 1);
-        }
+    .btn-group a.btn-loadAll {
+        background: rgba(0, 99, 169, 1);
+    }
 
-        .btn-group a.btn-loadStop {
-            display: none;
-            background: rgba(0, 75, 128, 1);
-        }
-
-        .btn-group a.btn-loadContinue {
-            display: none;
-            background: rgba(0, 75, 128, 1);
-        }
-    </style>
-    <div class="btn-group">
-        <a class="btn-loadNext" href="javascript:;">加载下一页</a>
-        <a class="btn-loadAll" href="javascript:;">加载全部页</a>
-        <a class="btn-loadStop" href="javascript:;">停止</a>
-        <a class="btn-loadContinue" href="javascript:;">继续</a>
-    </div>
+    .btn-group a.btn-loadStop {
+        display: none;
+        background: rgba(0, 75, 128, 1);
+    }
+</style>
+<div class="btn-group">
+    <a class="btn-loadNext" href="javascript:loadNextPage();">加载下一页</a>
+    <a class="btn-loadAll" href="javascript:loadNextPage(true);">加载全部页</a>
+    <a class="btn-loadStop" href="javascript:stopLoadPage();">停止</a>
 </div>
+<script>
+    $(function () {
+
+        /*====================================UI====================================*/
+        var btnGroup = $('.btn-group');
+        var btnLoadNext = $('.btn-loadNext');
+        var btnLoadAll = $('.btn-loadAll');
+        var btnLoadStop = $('.btn-loadStop');
+
+
+        /*====================================pageLoader====================================*/
+        var isStop = false;
+
+        function stopLoadPage() {
+            isStop = true;
+        }
+
+        function loading() {
+            btnLoadStop.show();
+            btnLoadNext.hide();
+            btnLoadAll.hide();
+        }
+
+        function loadDone() {
+            btnLoadStop.hide();
+            btnLoadAll.show();
+            btnLoadNext.show();
+        }
+
+        function getNextPageUrl() {
+            var url = '';
+            $('.page_css a').each(function (a) {
+                if (this.innerHTML === '下一页') {
+                    url = this.href;
+                }
+            });
+            if ($('.page_css a').last()[0].innerHTML !== '下一页') {
+                url = false;
+            }
+            return url;
+        }
+
+        function requestPage(url, callback) {
+            $.ajax({
+                url: url,
+                dataType: 'html',
+                success: callback
+            })
+        }
+
+        function renderPage(jqDom) {
+            var page = jqDom.find('.Mid2L_con');
+            var lastPage = $('.Mid2L_con').last();
+            lastPage.after(page);
+        }
+
+        function loadNextPage(isLoadAll) {
+            //判断是否停止
+            if (isStop) {
+                isStop = false;
+                loadDone();
+                return;
+            }
+            loading();
+            var url = getNextPageUrl();
+            //全部加载完成
+            if (!url) {
+                loadDone();
+                return;
+            }
+            requestPage(url, function (domStr, msg) {
+                if (msg === 'success') {
+                    //判断是否停止
+                    if (isStop) {
+                        isStop = false;
+                        loadDone();
+                        return;
+                    }
+                    //渲染页面
+                    renderPage($(domStr));
+                    //判断是否加载全部
+                    isLoadAll && loadNextPage(true);
+                    //单个加载完成
+                    !isLoadAll && loadDone();
+                }
+            });
+        }
+
+        window.stopLoadPage = stopLoadPage;
+        window.loadNextPage = loadNextPage;
+    })
+</script>
 </body>
 </html>
