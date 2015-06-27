@@ -82,7 +82,7 @@
 
             function getNextPageUrl() {
                 var url = '';
-                var aArr=$('.Mid2L_ctt.block').last().find('.page_css a');
+                var aArr=$('.Mid2L_con').last().find('.page_css a');
                 aArr.each(function (a) {
                     if (this.innerHTML === '下一页') {
                         url = this.href;
@@ -104,11 +104,12 @@
 
             function renderPage(jqDom) {
                 var page = jqDom.find('.Mid2L_ctt.block');
-                var pagecss=page.find('.page_css');
+//                var pagecss=page.find('.page_css');
                 var content=page.find('.Mid2L_con');
-                content.find('.page_css').remove();
+                /*content.find('.page_css').remove();
                 $('.page_css').last().after(content);
-                $('.Mid2L_con').last().after(pagecss);
+                $('.Mid2L_con').last().after(pagecss);*/
+                $('.Mid2L_con').last().after(content);
             }
 
             function loadNextPage(isLoadAll) {
