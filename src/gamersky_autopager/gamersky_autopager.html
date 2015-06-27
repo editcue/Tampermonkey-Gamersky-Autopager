@@ -104,6 +104,14 @@
 
             function renderPage(jqDom) {
                 var page = jqDom.find('.Mid2L_ctt.block');
+                var con=page.find('.Mid2L_con');
+                page.empty();
+                page.append(con);
+                /*page.find('.Mid2L_crumb').remove();
+                page.find('.Mid2L_tit').remove();
+                page.find('.Comment').remove();
+                page.find('.fenxiang').remove();
+                page.find('.Relevant').remove();*/
                 var lastPage = $('.Mid2L_ctt.block').last();
                 lastPage.after(page);
             }
