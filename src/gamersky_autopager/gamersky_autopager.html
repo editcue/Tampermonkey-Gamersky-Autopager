@@ -82,12 +82,13 @@
 
             function getNextPageUrl() {
                 var url = '';
-                $('.page_css a').each(function (a) {
+                var aArr=$('.Mid2L_con').last().find('.page_css a');
+                aArr.each(function (a) {
                     if (this.innerHTML === '下一页') {
                         url = this.href;
                     }
                 });
-                if ($('.page_css a').last()[0].innerHTML !== '下一页') {
+                if (aArr.last()[0].innerHTML !== '下一页') {
                     url = false;
                 }
                 return url;
