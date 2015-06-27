@@ -82,7 +82,7 @@
 
             function getNextPageUrl() {
                 var url = '';
-                var aArr=$('.Mid2L_con').last().find('.page_css a');
+                var aArr=$('.Mid2L_ctt.block').last().find('.page_css a');
                 aArr.each(function (a) {
                     if (this.innerHTML === '下一页') {
                         url = this.href;
