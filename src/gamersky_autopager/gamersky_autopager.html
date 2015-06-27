@@ -104,11 +104,12 @@
 
             function renderPage(jqDom) {
                 var page = jqDom.find('.Mid2L_ctt.block');
-//                var pagecss=page.find('.page_css');
                 var content=page.find('.Mid2L_con');
-                /*content.find('.page_css').remove();
-                $('.page_css').last().after(content);
-                $('.Mid2L_con').last().after(pagecss);*/
+                content.find('.fenxiang').remove();
+                content.find('.Relevant').remove();
+                if(content.find('.page_css').length<1){
+                    content.append(page.find('.page_css'));
+                }
                 $('.Mid2L_con').last().after(content);
             }
 
