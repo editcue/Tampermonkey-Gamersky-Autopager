@@ -1,6 +1,6 @@
 # [Tampermonkey Gamersky Autopager](https://github.com/editcue/Tampermonkey-Gamersky-Autopager)
 
-* version：0.1
+* version：0.2
 * Email: [editcue@gmail.com](editcue@gmail.com)
 
 这是一个（油猴）脚本库。使用前,浏览器需要先安装油猴插件。
