@@ -1,12 +1,15 @@
-# [Tampermonkey Gamersky Autopager](https://github.com/editcue/TampermonkeyGamerskyAutopager)
+# [Tampermonkey Gamersky Autopager](https://github.com/editcue/Tampermonkey-Gamersky-Autopager)
 
-[![Build Status](https://travis-ci.org/h5bp/html5-boilerplate.svg)](https://travis-ci.org/h5bp/html5-boilerplate)
-[![devDependency Status](https://david-dm.org/h5bp/html5-boilerplate/dev-status.svg)](https://david-dm.org/h5bp/html5-boilerplate#info=devDependencies)
+* version：0.0.1
 
-这是一个（油猴）脚本库，使用时需要安装油猴插件。
+游民星空加载下一页脚本
+![](doc1.png)
+**控件仅在页面加载完后才显示**<br>
+这是一个（油猴）脚本库。<br>
+使用前,浏览器需要先安装油猴插件。
+
 
 * Email: [editcue@gmail.com](editcue@gmail.com)
-
 
 ## License
 
