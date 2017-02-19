@@ -4,11 +4,12 @@
 // ==UserScript==
 // @name         Gamersky Autopager
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
-// @version      0.2
+// @version      0.3
 // @description  enter something useful
 // @author       editcue@gmail.com
 // @match        http://www.gamersky.com/ent/*/*.shtml
 // @match       http://www.gamersky.com/news/*/*.shtml
+// @match       http://www.gamersky.com/wenku/*/*.shtml
 // @grant        none
 // @require 	 http://code.jquery.com/jquery-2.1.1.min.js
 // ==/UserScript==
