@@ -3,7 +3,7 @@
  */
 // ==UserScript==
 // @name         Gamersky Autopager
-// @namespace    https://github.com/editcue/TampermonkeyScript
+// @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
 // @version      0.1
 // @description  enter something useful
 // @author       editcue@gmail.com
@@ -12,7 +12,7 @@
 // @require 	 http://code.jquery.com/jquery-2.1.1.min.js
 // ==/UserScript==
 $(function () {
-    $.get('https://raw.githubusercontent.com/editcue/TampermonkeyScript/master/src/gamersky_autopager/gamersky_autopager.html',
+    $.get('https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html',
         function (domStr, msg) {
             if (msg === 'success') {
                 $(domStr).filter('.html').appendTo('body');
