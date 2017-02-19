@@ -5,7 +5,7 @@
 // @name         Gamersky Autopager
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
 // @version      0.3
-// @description  enter something useful
+// @description  游民星空加载下一页插件
 // @author       editcue@gmail.com
 // @match        http://www.gamersky.com/ent/*/*.shtml
 // @match       http://www.gamersky.com/news/*/*.shtml
