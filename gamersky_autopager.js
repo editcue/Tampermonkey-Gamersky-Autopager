@@ -4,7 +4,7 @@
 // ==UserScript==
 // @name         Gamersky Autopager
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
-// @version      0.3
+// @version      0.4
 // @description  游民星空加载下一页插件
 // @author       editcue@gmail.com
 // @match        http://www.gamersky.com/ent/*/*.shtml
@@ -13,6 +13,7 @@
 // @grant        none
 // @require 	 http://code.jquery.com/jquery-2.1.1.min.js
 // ==/UserScript==
+window.$ = jQuery.noConflict(true);
 $(function () {
     $.get('https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html',
         function (domStr, msg) {
