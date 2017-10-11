@@ -22,13 +22,13 @@ img.style.width='1.5vw';
 img.style.zIndex='2';
 document.body.appendChild(img);
 
-window.$ = jQuery.noConflict(true);
-$(function () {
-    $.get('https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html',
+window.$$ = jQuery.noConflict(true);
+$$(function () {
+    $$.get('https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html',
         function (domStr, msg) {
             if (msg === 'success') {
-                $(domStr).filter('.html').appendTo('body');
-                $(domStr).filter('script').appendTo('body');
+                $$(domStr).filter('.html').appendTo('body');
+                $$(domStr).filter('script').appendTo('body');
                 document.body.removeChild(img);
             }
         })
