@@ -3,13 +3,21 @@
  */
 // ==UserScript==
 // @name         Gamersky Autopager
+// @name:zh-CN   游民星空加载下一页插件
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
-// @version      0.6
+// @version      0.7
 // @description  游民星空加载下一页插件
 // @author       editcue@gmail.com
 // @match        http://www.gamersky.com/ent/*/*.shtml
 // @match       http://www.gamersky.com/news/*/*.shtml
 // @match       http://www.gamersky.com/wenku/*/*.shtml
+// @match       http://www.gamersky.com/handbook/*/*.shtml
+// @match       http://www.gamersky.com/hardware/*/*.shtml
+// @match       http://www.gamersky.com/tech/*/*.shtml
+// @match       http://acg.gamersky.com/news/*/*.shtml
+// @match       http://acg.gamersky.com/otaku/*/*.shtml
+// @match       http://acg.gamersky.com/pic/*/*.shtml
+// @match       http://acg.gamersky.com/music/*/*.shtml
 // @grant        none
 // @require 	 https://cdn.bootcss.com/jquery/3.2.1/jquery.js
 // ==/UserScript==
@@ -24,7 +32,10 @@ document.body.appendChild(img);
 
 window.$$ = jQuery.noConflict(true);
 $$(function () {
-    $$.get('https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html',
+    var url='https://raw.githubusercontent.com/editcue/Tampermonkey-Gamersky-Autopager/master/gamersky_autopager.html';
+    //[ This sections of code should be “commented out” when released ]
+    // url='http://192.168.1.10:53350/Tampermonkey-Gamersky-Autopager/gamersky_autopager.html';
+    $$.get(url,
         function (domStr, msg) {
             if (msg === 'success') {
                 $$(domStr).filter('.html').appendTo('body');
