@@ -3,7 +3,6 @@
  */
 // ==UserScript==
 // @name         Gamersky Autopager
-// @name:zh-CN   游民星空加载下一页插件
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
 // @version      0.7
 // @description  游民星空加载下一页插件
