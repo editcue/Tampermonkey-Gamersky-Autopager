@@ -4,7 +4,7 @@
 // ==UserScript==
 // @name         Gamersky Autopager
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
-// @version      0.8
+// @version      0.81
 // @description  游民星空加载下一页插件
 // @author       editcue@gmail.com
 // @match        http://www.gamersky.com/ent/*/*.shtml
@@ -12,6 +12,8 @@
 // @match       http://www.gamersky.com/wenku/*/*.shtml
 // @match       http://www.gamersky.com/handbook/*/*.shtml
 // @match       http://www.gamersky.com/hardware/*/*.shtml
+// @match       http://www.gamersky.com/zl/*/*.shtml
+// @match       http://www.gamersky.com/review/*/*.shtml
 // @match       http://www.gamersky.com/tech/*/*.shtml
 // @match       http://acg.gamersky.com/news/*/*.shtml
 // @match       http://acg.gamersky.com/otaku/*/*.shtml

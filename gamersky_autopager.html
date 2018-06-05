@@ -62,6 +62,7 @@
             var btnLoadNext = $('.btn-loadNext');
             var btnLoadAll = $('.btn-loadAll');
             var btnLoadStop = $('.btn-loadStop');
+
             function loading() {
                 btnLoadStop.show();
                 btnLoadNext.hide();
@@ -83,8 +84,10 @@
 
             function getNextPageUrl() {
                 var url = '';
-                if(!$('.Mid2L_con').size()){return false;}
-                var aArr=$('.Mid2L_con').last().find('.page_css a');
+                if (!$('.Mid2L_con').size()) {
+                    return false;
+                }
+                var aArr = $('.Mid2L_con').last().find('.page_css a');
                 aArr.each(function (a) {
                     if (this.innerHTML === '下一页') {
                         url = this.href;
@@ -98,8 +101,27 @@
 
             function getNextPageUrlAcg() {
                 var url = '';
-                if(!$('.MidL_con').size()){return false;}
-                var aArr=$('.MidL_con').last().find('.page_css a');
+                if (!$('.MidL_con').size()) {
+                    return false;
+                }
+                var aArr = $('.MidL_con').last().find('.page_css a');
+                aArr.each(function (a) {
+                    if (this.innerHTML === '下一页') {
+                        url = this.href;
+                    }
+                });
+                if (aArr.last()[0].innerHTML !== '下一页') {
+                    url = false;
+                }
+                return url;
+            }
+
+            function getNextPageUrlReview() {
+                var url = '';
+                if (!$('.MidLcon').size()) {
+                    return false;
+                }
+                var aArr = $('.MidLcon').last().find('.page_css a');
                 aArr.each(function (a) {
                     if (this.innerHTML === '下一页') {
                         url = this.href;
@@ -122,13 +144,16 @@
 
             function renderPage(jqDom) {
                 var page = jqDom.find('.Mid2L_ctt.block');
-                if(!page.size())return false;
-                let content=page.find('.Mid2L_con');
-                if(content.find('.page_css').length<1){
+                if (!page.size()) {
+                    var content = jqDom.find('.Mid2L_con');
+                } else {
+                    var content = page.find('.Mid2L_con');
+                }
+                if (page && content.find('.page_css').length < 1) {
                     content.append(page.find('.page_css'));
                 }
                 $('.Mid2L_con').last().after(content);
-                fixVideoScript(jqDom,content);
+                fixVideoScript(jqDom, content);
                 removeRepeatElements('div.Relevant');
                 removeRepeatElements('div.fenxiang');
                 removeRepeatElements('div.Content_Paging');
@@ -137,53 +162,62 @@
 
             }
 
-            function fixVideoScript(jqDom,content) {
+            function fixVideoScript(jqDom, content) {
                 for (let i = 0; i < jqDom.length; i++) {
                     let el = jqDom[i];
-                    if(el.nodeName=='SCRIPT'&&el.src.indexOf('gsVideo.js')>-1&&jqDom[i+1].nodeName=='SCRIPT'&&!jqDom[i+1].src){
-                        let script=jqDom[i+1];
-                        if(window.evjs){
-                            addVideoScript(window.evjs,content,script);
-                        }else {
-                            $.get(el.src,function (r) {
-                                addVideoScript(r,content,script);
+                    if (el.nodeName == 'SCRIPT' && el.src.indexOf('gsVideo.js') > -1 && jqDom[i + 1].nodeName == 'SCRIPT' && !jqDom[i + 1].src) {
+                        let script = jqDom[i + 1];
+                        if (window.evjs) {
+                            addVideoScript(window.evjs, content, script);
+                        } else {
+                            $.get(el.src, function (r) {
+                                addVideoScript(r, content, script);
                             })
                         }
                     }
                 }
-                function addVideoScript(r,content,script){
-                    var js=r.replace(/document.write\(([^)]+?)\)/g,'return $1');
-                    window.evjs=js;
+
+                function addVideoScript(r, content, script) {
+                    var js = r.replace(/document.write\(([^)]+?)\)/g, 'return $1');
+                    window.evjs = js;
                     eval(js);
-                    var embed=eval(script.innerHTML)
+                    var embed = eval(script.innerHTML)
                     content.find('p[align=center]').append(embed);
                 }
             }
 
             function renderPageAcg(jqDom) {
-                var content=jqDom.find('.MidL_con');
-                if(!content.size())return false;
+                var content = jqDom.find('.MidL_con');
+                if (!content.size()) return false;
                 $('.MidL_con').last().after(content);
+                loadImg('img[src*="blank.png"]');
+
+            }
+
+            function renderPageReview(jqDom) {
+                var content = jqDom.find('.MidLcon');
+                if (!content.size()) return false;
+                $('.MidLcon').last().after(content);
                 loadImg('img[src*="blank.png"]');
 
             }
 
 
             function removeRepeatElements(selector) {
-                var eles=$(selector);
+                var eles = $(selector);
                 for (var i = 0; i < eles.length; i++) {
                     var ele = eles[i];
-                    if(i!=eles.length-1){
+                    if (i != eles.length - 1) {
                         $(ele).remove();
                     }
                 }
             }
 
             function loadImg(selector) {
-                var eles=$(selector);
+                var eles = $(selector);
                 for (var i = 0; i < eles.length; i++) {
                     var ele = $(eles[i]);
-                    ele.attr({src:ele.attr('data-src')});
+                    ele.attr({src: ele.attr('data-src')});
                 }
             }
 
@@ -195,7 +229,7 @@
                     return;
                 }
                 loading();
-                var url = getNextPageUrl()||getNextPageUrlAcg();
+                var url = getNextPageUrl() || getNextPageUrlAcg() || getNextPageUrlReview();
                 //全部加载完成
                 if (!url) {
                     loadDone();
@@ -209,8 +243,9 @@
                             loadDone();
                             return;
                         }
+                        debugger;
                         //渲染页面
-                        renderPage($(domStr))||renderPageAcg($(domStr));
+                        renderPage($(domStr)) || renderPageAcg($(domStr)) || renderPageReview($(domStr));
                         //判断是否加载全部
                         isLoadAll && loadNextPage(true);
                         //单个加载完成
