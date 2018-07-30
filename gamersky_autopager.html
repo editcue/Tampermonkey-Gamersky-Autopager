@@ -135,6 +135,8 @@
 
 
             function requestPage(url, callback) {
+                if(location.protocol=='https:')
+                    url=url.replace('http:','https:');
                 $.ajax({
                     url: url,
                     dataType: 'html',
@@ -243,7 +245,6 @@
                             loadDone();
                             return;
                         }
-                        debugger;
                         //渲染页面
                         renderPage($(domStr)) || renderPageAcg($(domStr)) || renderPageReview($(domStr));
                         //判断是否加载全部
