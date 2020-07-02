@@ -4,23 +4,23 @@
 // ==UserScript==
 // @name         Gamersky Autopager
 // @namespace    https://github.com/editcue/Tampermonkey-Gamersky-Autopager
-// @version      0.84
+// @version      0.85
 // @description  游民星空加载下一页插件
 // @author       editcue@gmail.com
-// @match       *://www.gamersky.com/ent/*/*.shtml
-// @match       *://ol.gamersky.com/news/*/*.shtml
-// @match       *://www.gamersky.com/news/*/*.shtml
-// @match       *://www.gamersky.com/wenku/*/*.shtml
-// @match       *://www.gamersky.com/handbook/*/*.shtml
-// @match       *://www.gamersky.com/hardware/*/*.shtml
-// @match       *://www.gamersky.com/zl/*/*.shtml
-// @match       *://www.gamersky.com/review/*/*.shtml
-// @match       *://www.gamersky.com/tech/*/*.shtml
-// @match       *://acg.gamersky.com/news/*/*.shtml
-// @match       *://acg.gamersky.com/otaku/*/*.shtml
-// @match       *://acg.gamersky.com/pic/*/*.shtml
-// @match       *://acg.gamersky.com/music/*/*.shtml
-// @match       *://shouyou.gamersky.com/news/*/*.shtml
+// @match       *://www.gamersky.com/ent/*/*.shtml*
+// @match       *://ol.gamersky.com/news/*/*.shtml*
+// @match       *://www.gamersky.com/news/*/*.shtml*
+// @match       *://www.gamersky.com/wenku/*/*.shtml*
+// @match       *://www.gamersky.com/handbook/*/*.shtml*
+// @match       *://www.gamersky.com/hardware/*/*.shtml*
+// @match       *://www.gamersky.com/zl/*/*.shtml*
+// @match       *://www.gamersky.com/review/*/*.shtml*
+// @match       *://www.gamersky.com/tech/*/*.shtml*
+// @match       *://acg.gamersky.com/news/*/*.shtml*
+// @match       *://acg.gamersky.com/otaku/*/*.shtml*
+// @match       *://acg.gamersky.com/pic/*/*.shtml*
+// @match       *://acg.gamersky.com/music/*/*.shtml*
+// @match       *://shouyou.gamersky.com/news/*/*.shtml*
 // @grant        none
 // @require 	 https://cdn.bootcss.com/jquery/3.2.1/jquery.js
 // ==/UserScript==
